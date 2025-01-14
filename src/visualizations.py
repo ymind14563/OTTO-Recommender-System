@@ -37,18 +37,19 @@ def plot_timestamp_distribution(df, save_path):
 def plot_session_event_distribution(df, save_path):
     plt.figure()
     session_event_counts = df.groupby("session").size()
-    session_event_counts.plot(kind="hist", bins=50, title="세션당 이벤트 수 분포", ylabel="빈도수(백만)", xlabel="이벤트 수")
+    session_event_counts.plot(kind="hist", bins=50, title="세션당 이벤트 수 분포", ylabel="빈도수", xlabel="이벤트 수")
     
     plt.savefig(save_path)
     plt.close()
 
 
-# (4) 고유 상품(AID) 분포
+# (4) 상품(AID) 분포
 def plot_aid_distribution(df, save_path):
     plt.figure()
     aids = df["aid"]
-    aid_counts = aids.value_counts().head(20)
+    aid_counts = aids.value_counts().head(20)    
     aid_counts.plot(kind="bar", title="상위 20개의 상품(AID) 분포", ylabel="개수", xlabel="상품 ID")
+    plt.xticks(rotation=45)
     
     plt.savefig(save_path)
     plt.close()
